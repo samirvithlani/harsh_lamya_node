@@ -1,0 +1,42 @@
+Framework: 
+it is pre defined arch and we just have to reuse it..
+
+frontend framework : react js ,angular,...
+and
+backend framework : nodejs,spring,python dajngo....
+
+
+jsp servlet --> MVC : models view and controller 
+model beans
+view html | jsp
+controller : servlet
+
+n tire arch:
+frontend tech <-- --> backe tech   <--- --->db
+
+Communication :- rest api: --> node js  rest api --> react | Django | angular
+..
+middewlare
+
+javascript : client side:
+
+javscript -->server --> node js :
+
+
+node applicaiton : project:
+
+D:
+ projects
+   batch_name
+	backend
+         open cmd
+           npm init
+             code .
+
+
+C:\Program Files\nodejs\node_modules\npm\node_modules
+NPM: node package manager
+
+
+method -->class --> package ---> jar --> jdk
+functions --> class -->  | dist |build --> folder | node_modules | npm
