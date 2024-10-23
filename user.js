@@ -12,3 +12,8 @@ const getData = () => {
 module.exports = {
     userName,age,getData
 }
+
+// const express = ()=>{
+
+// }
+module.exports = express

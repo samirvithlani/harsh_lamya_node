@@ -40,3 +40,37 @@ NPM: node package manager
 
 method -->class --> package ---> jar --> jdk
 functions --> class -->  | dist |build --> folder | node_modules | npm
+
+
+API: applicaiton pro interface:
+
+api request methods:
+
+GET   :
+POST  :
+PUT   :
+DELETE:
+PATCH :
+
+frontend                     backend:
+GET : {data}                 GET: controller --> db --> send{}
+POST: form: fill  ---->      POST: request:data -->controller --> db..
+PUT : update -->             PUT: update -->controller --> db
+DELETE: --->                 id:delete..   
+PATCH: update                PATCH: update | partial update...
+
+//urls: -->data:-
+
+searver :
+http : package :
+express : package :
+
+
+invitation : marrige : mom-dad --> depedent :
+
+npm install express
+
+dev tools:
+npm install nodemon -g
+
+
