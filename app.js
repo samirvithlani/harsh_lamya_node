@@ -8,46 +8,58 @@
 const express = require("express")
 const app = express()
 
-var users =[
+//domain:port/test
+//localhost ip
+//127.0.0.0 :localhost
+//localhost:3000/test
+app.get("/test",(req,res)=>{
+    //business logic..
+    console.log("test api called")
+    res.send("ok")
+})
+app.get("/user",(req,res)=>{
+
+    const user = {
+        userName:"ram",
+        userAge:23
+    }
+    //res.json(user)
+    res.json({
+        message:"user fetched successfully",
+        data:user
+        })
+
+})
+
+var users = [
     {
-        id:1,
-        name:"raj"
+        userName:"ram",
+        userAge:23
     },
     {
-        id:2,
-        name:"parth"
+        userName:"shyam",
+        userAge:24
+    },
+    {
+        userName:"hari",
+        userAge:25
     }
 ]
 
-//http:localhost:3000/test
-app.get("/test",(req,res)=>{
-    
-    console.log("test api called..")
-    res.send("api test...")
-})
-//htpp://localhost:3000/user
-app.get("/user",(req,res)=>{
 
-    var user = {id:1,name:"raj"}
-    //res.json(user)
-    res.json({message:"user data fetched",data:user})
-    
-})
 app.get("/users",(req,res)=>{
 
     res.json({
-        message:"all users fetched",
-        data:users,
-        flag:1
+        message:"users fetched successfully",
+        data:users
     })
-    
 
 })
 
 
-const PORT = 3000
-//server
+const PORT = 3000;
 app.listen(PORT,()=>{
-    console.log("server started..",PORT)
+    console.log(`Server is running on port ${PORT}`)
 })
+
 
