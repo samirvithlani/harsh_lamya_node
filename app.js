@@ -33,18 +33,47 @@ app.get("/user",(req,res)=>{
 
 var users = [
     {
+        id:101,
         userName:"ram",
         userAge:23
     },
     {
+        id:102,
         userName:"shyam",
         userAge:24
     },
     {
+        id:103,
         userName:"hari",
         userAge:25
     }
 ]
+app.get("/user/:id",(req,res)=>{
+
+
+    //:id -->fetch
+    const id = req.params.id;
+    // console.log(req.params)
+    // console.log(id)
+    const foundUser = users.find((user)=>user.id == id)
+    if(foundUser){
+        res.json({
+            message:"user fetched successfully",
+            data:foundUser
+        })
+    }
+    else{
+        res.json({
+            message:"user not found"
+        })
+    }
+
+
+})
+
+
+
+
 
 
 app.get("/users",(req,res)=>{
