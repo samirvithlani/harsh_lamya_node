@@ -73,4 +73,6 @@ npm install express
 dev tools:
 npm install nodemon -g
 
+npm install mongoose
+
 
