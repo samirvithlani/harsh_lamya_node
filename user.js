@@ -94,3 +94,32 @@ app.get("/users",(req,res)=>{
     })
 
 })
+
+//localhost:3000/users
+// app.get("/users", async (req, res) => {
+//   //db
+//   //db.users.find()
+//   const users = await userSchema.find();
+//   //res.send(users)
+//   res.json({
+//     data: users,
+//   });
+// });
+
+// app.get("/user/:id", async (req, res) => {
+//   const id = req.params.id; //:id
+//   //const foundUser = await userSchema.find({_id:id}) //array
+//   const foundUser = await userSchema.findById(req.params.id); //object
+//   console.log(foundUser);
+
+//   if (foundUser) {
+//     res.json({
+//       data: foundUser,
+//       message: "User found",
+//     });
+//   } else {
+//     res.json({
+//       message: "User not found",
+//     });
+//   }
+// });
