@@ -79,3 +79,14 @@ npm install mongoose
 
 server -->app.js --->routes --> controller [bind modal] -->response..
 
+
+browser --> api -->req ->[data] -->req
+req.body :- POST -->{objects}
+req.params :id.
+req.query : url ?q=hello i =100
+req.headers :AUTH
+
+
+
+
+
