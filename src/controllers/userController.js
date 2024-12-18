@@ -68,10 +68,20 @@ const deleteUserByAge = async (req, res) => {
   }
 };
 
+const addUsers = async(req,res)=>{
+
+    const users = await userSchema.insertMany(req.body)
+    console.log(users)
+    res.json("ok...")
+
+
+}
+
 module.exports = {
   getUsers,
   getUserById,
   addUser,
   deleteUser,
   deleteUserByAge,
+  addUsers
 };
