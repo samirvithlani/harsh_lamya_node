@@ -28,11 +28,18 @@ const addUser = async (req, res) => {
   //   const userObjFromBody = req.body;
   //   console.log(userObjFromBody);
 
-  const savedUser = await userSchema.create(req.body);
-  res.json({
-    message: "user saved successfully!",
-    data: savedUser,
-  });
+  try {
+    const savedUser = await userSchema.create(req.body);
+    res.json({
+      message: "user saved successfully!",
+      data: savedUser,
+    });
+  } catch (err) {
+    res.json({
+      message: "user not saved",
+      data: err.message,
+    });
+  }
 };
 
 const deleteUser = async (req, res) => {
@@ -54,7 +61,7 @@ const deleteUser = async (req, res) => {
 const deleteUserByAge = async (req, res) => {
   const age = req.query.age;
   const flag = req.query.flag;
-  console.log(flag)
+  console.log(flag);
   const users = await userSchema.deleteMany({ age: { $gte: age } });
   console.log(users);
   if (users.deletedCount > 0) {
@@ -68,14 +75,42 @@ const deleteUserByAge = async (req, res) => {
   }
 };
 
-const addUsers = async(req,res)=>{
+const updateUser = async (req, res) => {
+  const id = req.params.id;
+  //id -->where
+  //req.body = $set{}
+  const updatedUser = await userSchema.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
 
-    const users = await userSchema.insertMany(req.body)
-    console.log(users)
-    res.json("ok...")
+  res.status(200).json({
+    message: "user updated",
+    data: updatedUser,
+  });
+};
 
+const addUsers = async (req, res) => {
+  const users = await userSchema.insertMany(req.body);
+  console.log(users);
+  res.json("ok...");
+};
 
-}
+//hobby must unique:
+//remove
+const addHobby = async (req, res) => {
+  const id = req.params.id;
+  const hobby = req.body.hobby;
+
+  const updatedUser = await userSchema.findByIdAndUpdate(
+    id,
+    { $push: { hobbies: hobby } },
+    { new: true }
+  );
+  res.status(200).json({
+    message: "hobby added",
+    data: updatedUser,
+  });
+};
 
 module.exports = {
   getUsers,
@@ -83,5 +118,7 @@ module.exports = {
   addUser,
   deleteUser,
   deleteUserByAge,
-  addUsers
+  addUsers,
+  updateUser,
+  addHobby,
 };
