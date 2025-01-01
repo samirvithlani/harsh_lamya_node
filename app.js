@@ -5,11 +5,13 @@ app.use(express.json())
 
 
 const userRoutes = require("./src/routes/userRoutes");
+const departmentRoutes = require("./src/routes/departmentRoutes")
 
 //localhost:3000/users
 //app.use(userRoutes)
 //localhost:3000/user/users
 app.use("/user", userRoutes);
+app.use("/dept",departmentRoutes)
 
 //db connection
 mongoose

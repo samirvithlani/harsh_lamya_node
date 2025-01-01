@@ -19,7 +19,10 @@ const userSchema = new Schema({
   bloodGroup:{
     type:String,
     enum:["A+","B+","A-","B-"]
-
+  },
+  department:{
+    type:Schema.Types.ObjectId,
+    ref:"department"
   }
 });
 // mongoose.model("users",userSchema) //users is the name of the collection in the db
