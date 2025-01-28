@@ -28,6 +28,10 @@ const addUser = async (req, res) => {
   //   const userObjFromBody = req.body;
   //   console.log(userObjFromBody);
 
+  //email -->
+
+  //const vaooo == awa --> db..
+
   try {
     const savedUser = await userSchema.create(req.body);
     res.json({
