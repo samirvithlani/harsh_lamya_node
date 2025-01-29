@@ -1,4 +1,5 @@
 const userSchema = require("../models/userModel");
+const sendingMail = require("../utils/mailutil")
 
 const getUsers = async (req, res) => {
   const users = await userSchema.find().populate("department");
@@ -34,6 +35,8 @@ const addUser = async (req, res) => {
 
   try {
     const savedUser = await userSchema.create(req.body);
+    //mail...
+    await sendingMail(savedUser.email,"welcome mail","welcome to our portal")
     res.json({
       message: "user saved successfully!",
       data: savedUser,
