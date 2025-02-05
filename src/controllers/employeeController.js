@@ -27,7 +27,8 @@ const loginEmployee = async(req,res)=>{
         if(isMatch){
 
             //token...
-            const token = jwt.sign(foundEmpFromEmail.toObject(),secret)
+            //const token = jwt.sign(foundEmpFromEmail.toObject(),secret)
+            const token = jwt.sign({id:foundEmpFromEmail._id},secret)
             res.status(200).json({
                 message:"user login successfully",
                 //data:foundEmpFromEmail

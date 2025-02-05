@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken")
 const secret ="royal"
 
-const verifyUser = (req,res,next)=>{
+const employeeModel = require("../models/employeeModel");
+
+const verifyUser = async(req,res,next)=>{
     var token = req.headers.authorization;
     //Bearer token
     if(token){
@@ -12,6 +14,11 @@ const verifyUser = (req,res,next)=>{
         try{
 
             const user  = jwt.verify(token,secret);
+            //console.log(user)
+            const emp = await employeeModel.findById(user.id)
+            console.log(emp)
+            console.log(emp.name)
+            //emp.role.name =="MANAGER"
             next()
 
         }catch(err){

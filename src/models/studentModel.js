@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 
-const employeeSchema = new Schema({
+const studentSchema = new Schema({
     name:{
         type:String
     },
@@ -10,10 +10,12 @@ const employeeSchema = new Schema({
         unique:true
     },
     password:{
-        type:String
+        type:String,
     },
-    // role:{
+    isVerified:{
+        type:Boolean,
+        default:false
+    }
+})
 
-    // }
-},{timestamps:true})
-module.exports = mongoose.model("employee",employeeSchema)
+module.exports = mongoose.model("students",studentSchema)

@@ -8,12 +8,16 @@ const userRoutes = require("./src/routes/userRoutes");
 const departmentRoutes = require("./src/routes/departmentRoutes")
 const employeeRoutes = require("./src/routes/employeeRoutes")
 
+const studentRoutes = require("./src/routes/studentRoutes")
+
 //localhost:3000/users
 //app.use(userRoutes)
 //localhost:3000/user/users
 app.use("/user", userRoutes);
 app.use("/dept",departmentRoutes)
 app.use("/emp",employeeRoutes)
+app.use("/student",studentRoutes)
+
 
 //db connection
 mongoose

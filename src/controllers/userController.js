@@ -1,5 +1,5 @@
 const userSchema = require("../models/userModel");
-const sendingMail = require("../utils/mailutil")
+const sendingMail = require("../utils/mailutil");
 
 const getUsers = async (req, res) => {
   const users = await userSchema.find().populate("department");
@@ -36,7 +36,7 @@ const addUser = async (req, res) => {
   try {
     const savedUser = await userSchema.create(req.body);
     //mail...
-    await sendingMail(savedUser.email,"welcome mail","welcome to our portal")
+    await sendingMail(savedUser.email, "welcome mail", "welcome to our portal");
     res.json({
       message: "user saved successfully!",
       data: savedUser,
@@ -119,6 +119,25 @@ const addHobby = async (req, res) => {
   });
 };
 
+//verfy -->GET -> json ->send -->string... -> consider as
+const checkJs = async (req, res) => {
+  res.send(`
+    <h1>Email verified successfully!</h1>
+    <p>You will be redirected to our website in a few seconds...</p>
+    <script>
+      setTimeout(() => {
+        window.location.href = "http://localhost:3000/user/callapiauto?userName=samir"; // Replace with your success URL
+      }, 2000); // Redirect after 2 seconds
+    </script>
+  `);
+  //res.send("ok")
+};
+
+const callApiAuto = async (req, res) => {
+  console.log("called...");
+  const userName = req.query.userName;
+  res.send(userName);
+};
 module.exports = {
   getUsers,
   getUserById,
@@ -128,4 +147,6 @@ module.exports = {
   addUsers,
   updateUser,
   addHobby,
+  checkJs,
+  callApiAuto,
 };
