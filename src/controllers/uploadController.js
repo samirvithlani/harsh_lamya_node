@@ -1,6 +1,9 @@
 const multer = require("multer");
 const uploadFileinCloudnary = require("../utils/CloudnaryUtil");
 const path = require("path");
+const readData = require("../utils/readDatafromexcell")
+
+const studentModel = require("../models/studentModel")
 
 const storage = multer.diskStorage({
   //destination: "./uploads",
@@ -26,7 +29,7 @@ const fileFilter1 = (req, file, cb) => {
 
 const upload = multer({
   storage: storage,
-  fileFilter: fileFilter1,
+  //fileFilter: fileFilter1,
 }).single("profilepic");
 
 const uploadFile = async (req, res) => {
@@ -46,6 +49,10 @@ const uploadFile = async (req, res) => {
 
         //const cloudnaryResponse = await uploadFileinCloudnary(req.file.path);
         //console.log(req.file)
+        const excellData = readData(req.file.path)
+        console.log(excellData)
+        //studentModel.insertMany(excellData)
+        //db.insertMany(excellData)
         console.log(req.body)
         res.status(201).json({
           message:
