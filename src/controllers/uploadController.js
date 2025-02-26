@@ -47,10 +47,12 @@ const uploadFile = async (req, res) => {
         //db logic
         //cloud...
 
-        //const cloudnaryResponse = await uploadFileinCloudnary(req.file.path);
-        //console.log(req.file)
-        const excellData = readData(req.file.path)
-        console.log(excellData)
+        const cloudnaryResponse = await uploadFileinCloudnary(req.file.path);
+        console.log(cloudnaryResponse)
+
+        console.log(req.file)
+        // const excellData = readData(req.file.path)
+        // console.log(excellData)
         //studentModel.insertMany(excellData)
         //db.insertMany(excellData)
         console.log(req.body)
