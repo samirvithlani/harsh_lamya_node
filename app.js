@@ -7,10 +7,10 @@ const { Queue } = require("bullmq");
 const Redis = require("ioredis");
 
 //redis connection...
-const redisConnection = new Redis({
-  host: "127.0.0.1",
-  port: 6379,
-});
+const redisConnection = new Redis(
+  "rediss://red-cujm3nt2ng1s73b92o1g:L7RB5dQeIHEPOURTniYt21LJscQBO2wO@oregon-keyvalue.render.com:6379",
+  
+)
 //console.log(redisConnection);
 
 //queue..
@@ -50,6 +50,40 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+const CACHE_EXPIRY = 600;
+
+const cacheMiddleware = async (req, res, next) => {
+  const { userId } = req.params;
+
+  try {
+    const cacheData = await redisConnection.get(userId);
+    if (cacheData) {
+      console.log("cache hit");
+      return res.json(JSON.parse(cacheData));
+    }
+    console.log("cache miss");
+    next();
+  } catch (err) {
+    console.log("redis error", err);
+    next();
+  }
+};
+
+const fakeData = {
+  1: { name: "John", age: 23 },
+  2: { name: "Doe", age: 24 },
+  3: { name: "Jane", age: 25 },
+  4:{name:"Harsh",age:23},
+  5:{name:"Lamya",age:25}
+};
+
+app.get("/user/:userId", cacheMiddleware, (req, res) => {
+  const { userId } = req.params;
+  const userData = fakeData[userId];
+  redisConnection.setex(userId, CACHE_EXPIRY, JSON.stringify(userData));
+  return res.json(userData);
+});
 
 const PORT = 3000;
 app.listen(PORT, () => {
