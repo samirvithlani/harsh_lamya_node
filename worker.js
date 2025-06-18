@@ -11,7 +11,7 @@ const worker = new Worker(
     "taskQueue",
     async(job)=>{
         console.log(`processing job for ${job.data.name}`)
-        await new Promise((resolve)=>setTimeout(resolve,1000))
+        await new Promise((resolve)=>setTimeout(resolve,10000))
         console.log(`done job for ${job.data.name}`)
     },
     {connection:redisConnection}

@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const cors = require("cors")
+app.use(cors())
 const mongoose = require("mongoose");
 app.use(express.json());
 const cron = require("node-cron");
@@ -11,6 +13,10 @@ const redisConnection = new Redis(
   "rediss://red-cujm3nt2ng1s73b92o1g:L7RB5dQeIHEPOURTniYt21LJscQBO2wO@oregon-keyvalue.render.com:6379",
   
 )
+// const redisConnection = new Redis({
+//   host: "127.0.0.1", // or "localhost"
+//   port: 6379,        // default Redis port
+// })
 //console.log(redisConnection);
 
 //queue..

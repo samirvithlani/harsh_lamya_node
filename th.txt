@@ -89,4 +89,14 @@ req.headers :AUTH
 
 
 
+rabbit mq plus redis
+app : 10,000 register:
+
+main     <<-->>   mail service
+userEmail     ---> eamil --> mail
+              --> job ->data --> done
+          respoonse<---
+1 --> db -> service --> mail
+
+
 
