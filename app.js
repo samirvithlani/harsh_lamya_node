@@ -7,6 +7,29 @@ app.use(express.json());
 const cron = require("node-cron");
 const { Queue } = require("bullmq");
 const Redis = require("ioredis");
+const http = require("http")
+const server = http.createServer(app)
+const {Server} = require("socket.io")
+
+const io = new Server(server,{
+  cors:{
+      origin:"*",
+      methods:['GET','POST']
+  }
+})
+
+
+
+io.on("connection",(socekt)=>{
+  console.log(`user connected with id =${socekt.id}`)
+
+  socekt.on("sendMessage",(data)=>{
+    console.log(data)
+    //socekt.emit("receiveMessage",data.toUpperCase())
+    socekt.broadcast.emit("receiveMessage",data.toUpperCase())
+  })
+
+})
 
 //redis connection...
 const redisConnection = new Redis(
@@ -92,6 +115,7 @@ app.get("/user/:userId", cacheMiddleware, (req, res) => {
 });
 
 const PORT = 3000;
-app.listen(PORT, () => {
+
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
