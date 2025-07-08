@@ -72,7 +72,7 @@ app.use("/upload", uploadRoutes);
 
 //db connection
 mongoose
-  .connect("mongodb://127.0.0.1/harsh_lamya_node")
+  .connect("mongodb+srv://samir:samir@cluster0.key63fx.mongodb.net/harsh_lamya_node")
   .then(() => {
     console.log("DB connected");
   })
